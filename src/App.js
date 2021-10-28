@@ -1,23 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
+import Data from "./Components/Data";
+import Form from "./Components/Form";
 
+import {useEffect, useState} from 'react'
 function App() {
+  const [attendencedata, setattendencedata] = useState({})
+  useEffect(()=>{
+    console.log("Effect Runnig")
+    if(localStorage.getItem("storedAttendence")){
+      setattendencedata({...localStorage.getItem("storedAttendence")})
+    }
+  },[])
+  const addAttendencedata = (name,date,inTime)=>{
+    setattendencedata((prev)=>{
+        const allAttendence = {...prev}
+        
+        const dateArray = Object.keys(prev)
+        if(dateArray.includes(date)){
+          let attendenceArray = [...allAttendence[date]]
+          let singleAttendence = {
+            name,
+            inTime,
+            breakInTime:"",
+            breakOutTime:"",
+            isEditable:"",
+            outTime:""
+          }
+          attendenceArray.push(singleAttendence);
+         
+          allAttendence[date] = attendenceArray;
+          console.log(allAttendence)
+          return allAttendence
+        }
+        else{
+          let attendenceArray = []
+          let singleAttendence = {
+            name,
+            inTime,
+            breakInTime:"",
+            breakOutTime:"",
+            isEditable:"",
+            outTime:""
+          }
+          attendenceArray.push(singleAttendence)
+          allAttendence[date] = attendenceArray
+          console.log(allAttendence)
+        
+          return allAttendence
+        }
+    })
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <Form addData={addAttendencedata}/>
+      <Data setData={setattendencedata} data={attendencedata}/>
     </div>
   );
 }
