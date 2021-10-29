@@ -80,14 +80,16 @@ attendence Record
             inTime:"",
             breakinTime:"",
             breakOutTime:"",
-            isEditable:""
+            isEditable:"",
+            id:""
         },
         {
             name:"",
             inTime:"",
             breakinTime:"",
             breakOutTime:"",
-            isEditable:"" 
+            isEditable:"" ,
+            id:""
         }
     ]
 }

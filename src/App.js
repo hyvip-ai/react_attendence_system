@@ -1,6 +1,6 @@
 import Data from "./Components/Data";
 import Form from "./Components/Form";
-
+import uuid from "uuid/dist/v4"
 import {useEffect, useState} from 'react'
 function App() {
   const [attendencedata, setattendencedata] = useState({})
@@ -23,7 +23,8 @@ function App() {
             breakInTime:"",
             breakOutTime:"",
             isEditable:true,
-            outTime:""
+            outTime:"",
+            id:uuid()
           }
           attendenceArray.push(singleAttendence);
          
@@ -39,7 +40,8 @@ function App() {
             breakInTime:"",
             breakOutTime:"",
             isEditable:true,
-            outTime:""
+            outTime:"",
+            id:uuid()
           }
           attendenceArray.push(singleAttendence)
           allAttendence[date] = attendenceArray
@@ -52,7 +54,7 @@ function App() {
   return (
     <div className="container">
       <Form addData={addAttendencedata}/>
-      <Data setData={setattendencedata} data={attendencedata}/>
+      {Object.keys(attendencedata).length?<Data setData={setattendencedata} data={attendencedata}/>:null}
     </div>
   );
 }

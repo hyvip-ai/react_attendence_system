@@ -4,7 +4,6 @@ import classes from "./row.module.css";
 function Row({ rowData, number, date, setData }) {
   const breakInHandler = () => {
     const breakTime = moment().format("LT");
-    console.log(breakTime);
     setData((prev) => {
       const newAttendence = { ...prev };
       newAttendence[date][number - 1].breakInTime = breakTime;
@@ -13,7 +12,6 @@ function Row({ rowData, number, date, setData }) {
   };
   const breakOutHandler = () =>{
     const breakOutTime = moment().format("LT");
-    console.log(breakOutTime)
     setData((prev) => {
         const newAttendence = { ...prev };
         newAttendence[date][number - 1].breakOutTime = breakOutTime;
@@ -22,7 +20,6 @@ function Row({ rowData, number, date, setData }) {
   }
   const outHandler = () => {
       const outTime = moment().format("LT");;
-      console.log(outTime)
       setData((prev) => {
         const newAttendence = { ...prev };
         newAttendence[date][number - 1].outTime = outTime;
