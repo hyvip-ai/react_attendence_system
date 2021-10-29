@@ -1,14 +1,17 @@
 import Data from "./Components/Data";
 import Form from "./Components/Form";
-
+import uuid from "uuid/dist/v4"
 import {useEffect, useState} from 'react'
 function App() {
   const [attendencedata, setattendencedata] = useState({})
   useEffect(()=>{
-    console.log("Effect Runnig")
+    
+    console.log("App.js useEffect Running")
     if(localStorage.getItem("storedAttendence")){
-      setattendencedata({...localStorage.getItem("storedAttendence")})
+     
+      setattendencedata(JSON.parse(localStorage.getItem("storedAttendence")))
     }
+    
   },[])
   const addAttendencedata = (name,date,inTime)=>{
     setattendencedata((prev)=>{
@@ -22,13 +25,14 @@ function App() {
             inTime,
             breakInTime:"",
             breakOutTime:"",
-            isEditable:"",
-            outTime:""
+            isEditable:true,
+            outTime:"",
+            id:uuid()
           }
           attendenceArray.push(singleAttendence);
          
           allAttendence[date] = attendenceArray;
-          console.log(allAttendence)
+          localStorage.setItem("storedAttendence",JSON.stringify(allAttendence))
           return allAttendence
         }
         else{
@@ -38,13 +42,13 @@ function App() {
             inTime,
             breakInTime:"",
             breakOutTime:"",
-            isEditable:"",
-            outTime:""
+            isEditable:true,
+            outTime:"",
+            id:uuid()
           }
           attendenceArray.push(singleAttendence)
           allAttendence[date] = attendenceArray
-          console.log(allAttendence)
-        
+          localStorage.setItem("storedAttendence",JSON.stringify(allAttendence))
           return allAttendence
         }
     })
@@ -52,7 +56,7 @@ function App() {
   return (
     <div className="container">
       <Form addData={addAttendencedata}/>
-      <Data setData={setattendencedata} data={attendencedata}/>
+      {Object.keys(attendencedata).length?<Data setData={setattendencedata} data={attendencedata}/>:null}
     </div>
   );
 }
