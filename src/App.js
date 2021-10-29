@@ -22,7 +22,7 @@ function App() {
             inTime,
             breakInTime:"",
             breakOutTime:"",
-            isEditable:"",
+            isEditable:true,
             outTime:""
           }
           attendenceArray.push(singleAttendence);
@@ -38,7 +38,7 @@ function App() {
             inTime,
             breakInTime:"",
             breakOutTime:"",
-            isEditable:"",
+            isEditable:true,
             outTime:""
           }
           attendenceArray.push(singleAttendence)

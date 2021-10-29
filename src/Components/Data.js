@@ -1,6 +1,6 @@
 import React from 'react'
 import uuid from "uuid/dist/v4"
-import Wrapper from './Wrapper'
+import OuterWrapper from './OuterWrapper'
 function Data({data,setData}) {
     return (
         <div className="container text-center mt-5">
@@ -8,8 +8,9 @@ function Data({data,setData}) {
                     {Object.keys(data).map((item)=>{
                         return (
                             <>
-                                <h1 key={uuid()}>{item}</h1>
-                                <Wrapper key={uuid()} setData={setData} date={item} warpperData={data[item]}/>
+                                <OuterWrapper  key={uuid()} date={item} wrapperData={data[item]} setData={setData}/>
+                                
+                                
                             </>
                         )
                     })}
