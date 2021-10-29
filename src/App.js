@@ -5,10 +5,13 @@ import {useEffect, useState} from 'react'
 function App() {
   const [attendencedata, setattendencedata] = useState({})
   useEffect(()=>{
-    console.log("Effect Runnig")
+    
+    console.log("App.js useEffect Running")
     if(localStorage.getItem("storedAttendence")){
-      setattendencedata({...localStorage.getItem("storedAttendence")})
+     
+      setattendencedata(JSON.parse(localStorage.getItem("storedAttendence")))
     }
+    
   },[])
   const addAttendencedata = (name,date,inTime)=>{
     setattendencedata((prev)=>{
@@ -29,7 +32,7 @@ function App() {
           attendenceArray.push(singleAttendence);
          
           allAttendence[date] = attendenceArray;
-          console.log(allAttendence)
+          localStorage.setItem("storedAttendence",JSON.stringify(allAttendence))
           return allAttendence
         }
         else{
@@ -45,8 +48,7 @@ function App() {
           }
           attendenceArray.push(singleAttendence)
           allAttendence[date] = attendenceArray
-          console.log(allAttendence)
-        
+          localStorage.setItem("storedAttendence",JSON.stringify(allAttendence))
           return allAttendence
         }
     })

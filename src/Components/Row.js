@@ -7,6 +7,7 @@ function Row({ rowData, number, date, setData }) {
     setData((prev) => {
       const newAttendence = { ...prev };
       newAttendence[date][number - 1].breakInTime = breakTime;
+      localStorage.setItem("storedAttendence",JSON.stringify(newAttendence))
       return newAttendence;
     });
   };
@@ -15,6 +16,7 @@ function Row({ rowData, number, date, setData }) {
     setData((prev) => {
         const newAttendence = { ...prev };
         newAttendence[date][number - 1].breakOutTime = breakOutTime;
+      localStorage.setItem("storedAttendence",JSON.stringify(newAttendence))
         return newAttendence;
       });
   }
@@ -24,6 +26,7 @@ function Row({ rowData, number, date, setData }) {
         const newAttendence = { ...prev };
         newAttendence[date][number - 1].outTime = outTime;
         newAttendence[date][number - 1].isEditable = false;
+      localStorage.setItem("storedAttendence",JSON.stringify(newAttendence))
         return newAttendence;
       });
   };
