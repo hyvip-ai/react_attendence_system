@@ -2,6 +2,7 @@ import Data from "./Components/Data";
 import Form from "./Components/Form";
 import uuid from "uuid/dist/v4"
 import {useEffect, useState} from 'react'
+import CreateCSV from "./Components/CreateCSV";
 function App() {
   const [attendencedata, setattendencedata] = useState({})
   useEffect(()=>{
@@ -57,6 +58,7 @@ function App() {
     <div className="container">
       <Form addData={addAttendencedata}/>
       {Object.keys(attendencedata).length?<Data setData={setattendencedata} data={attendencedata}/>:null}
+      {Object.keys(attendencedata).length?<CreateCSV csvData={attendencedata}/>:null}
     </div>
   );
 }

@@ -15,6 +15,7 @@ function Row({ rowData, number, date, setData }) {
     const breakOutTime = moment().format("LT");
     setData((prev) => {
         const newAttendence = { ...prev };
+        newAttendence[date][number - 1].breakInTime = newAttendence[date][number - 1].breakInTime?newAttendence[date][number - 1].breakInTime:"Not Used"
         newAttendence[date][number - 1].breakOutTime = breakOutTime;
       localStorage.setItem("storedAttendence",JSON.stringify(newAttendence))
         return newAttendence;
@@ -24,6 +25,8 @@ function Row({ rowData, number, date, setData }) {
       const outTime = moment().format("LT");;
       setData((prev) => {
         const newAttendence = { ...prev };
+        newAttendence[date][number - 1].breakInTime = newAttendence[date][number - 1].breakInTime?newAttendence[date][number - 1].breakInTime:"Not Used"
+        newAttendence[date][number - 1].breakOutTime = newAttendence[date][number - 1].breakOutTime?newAttendence[date][number - 1].breakOutTime:"Not Used" 
         newAttendence[date][number - 1].outTime = outTime;
         newAttendence[date][number - 1].isEditable = false;
       localStorage.setItem("storedAttendence",JSON.stringify(newAttendence))
