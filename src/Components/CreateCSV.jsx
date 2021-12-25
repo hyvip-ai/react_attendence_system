@@ -4,6 +4,11 @@ import React from "react";
 
 function CreateCSV({ csvData }) {
   const createCSV = () => {
+    let data = prompt("Enter Your Password:")
+    if(data!=="Admin"){
+      alert("Wrong Input Entered")
+      return
+    }
     let csv = "";
     for (let date in csvData) {
       csv += `Attendence For: , ${moment(date).format("MMMM Do YYYY")}` + "\r\n";
